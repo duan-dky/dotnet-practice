@@ -39,7 +39,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button4 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +55,7 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button1.Location = new System.Drawing.Point(88, 107);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(162, 62);
@@ -66,7 +66,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(88, 195);
+            this.button2.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(88, 211);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(162, 62);
             this.button2.TabIndex = 2;
@@ -76,7 +77,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(88, 291);
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button3.Location = new System.Drawing.Point(88, 318);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(162, 62);
             this.button3.TabIndex = 3;
@@ -88,7 +90,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.linkLabel1.Location = new System.Drawing.Point(288, 472);
+            this.linkLabel1.Location = new System.Drawing.Point(291, 434);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(46, 24);
             this.linkLabel1.TabIndex = 4;
@@ -127,27 +129,17 @@
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(88, 386);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(162, 62);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "退出";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 512);
-            this.Controls.Add(this.button4);
+            this.ClientSize = new System.Drawing.Size(349, 467);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NverMiss";
@@ -170,6 +162,5 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 显示ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
-        private System.Windows.Forms.Button button4;
     }
 }

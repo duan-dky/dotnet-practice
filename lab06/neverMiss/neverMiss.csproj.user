@@ -7,6 +7,9 @@
     <Compile Update="HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PopUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="RemindForm.cs">
       <SubType>Form</SubType>
     </Compile>

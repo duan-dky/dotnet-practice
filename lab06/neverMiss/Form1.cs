@@ -77,7 +77,7 @@ namespace neverMiss
 
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Environment.Exit(0);
         }
 
         private void 显示ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,21 +86,6 @@ namespace neverMiss
             this.WindowState = FormWindowState.Normal;
             this.Activate();
 
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("是否最小化到系统托盘", "提示", MessageBoxButtons.YesNoCancel,
-           MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (dr == DialogResult.Yes)
-            {
-
-            }
-            if(dr==DialogResult.No)
-            {
-                this.Close();
-                System.Environment.Exit(0);
-            }
         }
     }
 }
