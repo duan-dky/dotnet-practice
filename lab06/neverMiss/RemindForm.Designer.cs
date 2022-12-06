@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -56,6 +56,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -66,21 +69,72 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.numericUpDown6);
+            this.groupBox2.Controls.Add(this.numericUpDown5);
+            this.groupBox2.Controls.Add(this.numericUpDown4);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.textBox3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Location = new System.Drawing.Point(12, 225);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(396, 126);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "设置提醒频率";
+            // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.Location = new System.Drawing.Point(84, 93);
+            this.numericUpDown6.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDown6.TabIndex = 9;
+            this.numericUpDown6.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.Location = new System.Drawing.Point(84, 59);
+            this.numericUpDown5.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDown5.TabIndex = 8;
+            this.numericUpDown5.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Location = new System.Drawing.Point(84, 26);
+            this.numericUpDown4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDown4.TabIndex = 7;
+            this.numericUpDown4.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label6
             // 
@@ -109,20 +163,6 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "次";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(79, 92);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 27);
-            this.textBox1.TabIndex = 0;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(79, 59);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(125, 27);
-            this.textBox3.TabIndex = 4;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -150,13 +190,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "间隔时间";
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(79, 26);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(125, 27);
-            this.textBox2.TabIndex = 0;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.radioButton2);
@@ -171,6 +204,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
             this.radioButton2.Location = new System.Drawing.Point(236, 37);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(45, 24);
@@ -349,6 +383,9 @@
             this.Load += new System.EventHandler(this.RemindForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -365,14 +402,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -389,5 +423,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.NumericUpDown numericUpDown4;
     }
 }

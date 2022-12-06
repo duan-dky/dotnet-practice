@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HiC+npo5214j9trFvwh/7E0YuOw2Ireo/CAVmDYXOMcnja9Ox4TTy4v/Z2eHNfgCXLqTIbNk1wQ8SME96PWjQQ==",
+  "dgSpecHash": "GO1ntkCZ6p/I6p5qAMeiOOyYQfw9aUyq5Wl+D8o6tPu6YQOJJ3Jbrd4jn5UAcnNf5YAK8pvdtEKu8l+rfN1DNA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\duan\\Projects\\vs_project\\NeverMiss\\neverMiss\\neverMiss.csproj",
+  "projectFilePath": "C:\\Users\\duan\\Downloads\\NeverMiss\\neverMiss\\neverMiss.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\duan\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\duan\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

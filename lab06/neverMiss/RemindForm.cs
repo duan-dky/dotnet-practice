@@ -125,58 +125,69 @@ namespace neverMiss
             {
                 isImportant = 0;
             }
-            string connectionString = "Data Source=demo.db;Version=3;";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            if(richTextBox1.Text.Length == 0) {
+                MessageBox.Show("请输入完整信息");
+            }
+            else
             {
-                connection.Open();
+                string connectionString = "Data Source=demo.db;Version=3;";
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
 
-                // 执行一个查询
-                int sum = 0;
-                string count = "select count(*) from reminder";
-                using (SQLiteCommand command = new SQLiteCommand(count, connection))
-                {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    // 执行一个查询
+                    int sum = 0;
+                    string count = "select count(*) from reminder";
+                    using (SQLiteCommand command = new SQLiteCommand(count, connection))
                     {
-                        while (reader.Read())
+                        using (SQLiteDataReader reader = command.ExecuteReader())
                         {
-                            sum = int.Parse(reader.GetValue(0).ToString());
-                        }
-                    }
-                }
-                string insert = "insert into reminder values (@id,@message,@datetime,@interval,@count,@keeping,@important,@path)";
-                using (SQLiteCommand cmd = new SQLiteCommand(connection))
-                {
-                    cmd.CommandText = insert;
-                    cmd.Parameters.AddWithValue("@id", sum+1);
-                    cmd.Parameters.AddWithValue("@message", richTextBox1.Text);
-                    cmd.Parameters.AddWithValue("@datetime", dateTimePicker1.Value.ToString());
-                    cmd.Parameters.AddWithValue("@interval", int.Parse(textBox2.Text));
-                    cmd.Parameters.AddWithValue("@count", int.Parse(textBox3.Text));
-                    cmd.Parameters.AddWithValue("@keeping", int.Parse(textBox1.Text));
-                    cmd.Parameters.AddWithValue("@important", isImportant);
-                    cmd.Parameters.AddWithValue("@path", path);
-                    cmd.ExecuteNonQuery();
-                }
-                string query = "SELECT * FROM reminder";
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            for(int i = 0; i < 8; i++)
+                            while (reader.Read())
                             {
-                                richTextBox1.Text = richTextBox1.Text + reader.GetValue(i) + " ";
+                                sum = int.Parse(reader.GetValue(0).ToString());
                             }
                         }
                     }
+                    string insert = "insert into reminder values (@id,@message,@datetime,@interval,@count,@keeping,@important,@path,@finish)";
+                    using (SQLiteCommand cmd = new SQLiteCommand(connection))
+                    {
+                        cmd.CommandText = insert;
+                        cmd.Parameters.AddWithValue("@id", sum + 1);
+                        cmd.Parameters.AddWithValue("@message", richTextBox1.Text);
+                        cmd.Parameters.AddWithValue("@datetime", dateTimePicker1.Value.ToString());
+                        cmd.Parameters.AddWithValue("@interval", int.Parse(numericUpDown4.Text));
+                        cmd.Parameters.AddWithValue("@count", int.Parse(numericUpDown5.Text));
+                        cmd.Parameters.AddWithValue("@keeping", int.Parse(numericUpDown6.Text));
+                        cmd.Parameters.AddWithValue("@important", isImportant);
+                        cmd.Parameters.AddWithValue("@path", path);
+                        cmd.Parameters.AddWithValue("@finish", 0);
+                        cmd.ExecuteNonQuery();
+                    }
+                    //string query = "SELECT * FROM reminder";
+                    //using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    //{
+                    //    using (SQLiteDataReader reader = command.ExecuteReader())
+                    //    {
+                    //        while (reader.Read())
+                    //        {
+                    //            for(int i = 0; i < 8; i++)
+                    //            {
+                    //                richTextBox1.Text = richTextBox1.Text + reader.GetValue(i) + " ";
+                    //            }
+                    //        }
+                    //    }
+                    //}
                 }
+                MessageBox.Show("设置成功");
             }
+            
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }
+
+
     }
 }

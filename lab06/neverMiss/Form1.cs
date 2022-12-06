@@ -28,11 +28,7 @@ namespace neverMiss
 
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            String url=Application.StartupPath.ToString() + "help.chm";
-            Help.ShowHelp(null, url);
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -86,6 +82,16 @@ namespace neverMiss
             this.WindowState = FormWindowState.Normal;
             this.Activate();
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("您确定退出吗？", "提示", MessageBoxButtons.OKCancel,
+            MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.OK)
+            {
+                System.Environment.Exit(0);
+            }
         }
     }
 }
