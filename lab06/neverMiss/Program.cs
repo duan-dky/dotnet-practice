@@ -43,7 +43,7 @@ namespace neverMiss
                 //}
                 for(; ; )
                 {   
-                    Thread.Sleep(10000);
+                    Thread.Sleep(60000);
                     timer timer = new timer();
                     int sum = timer.getSum();
                     reminder[] reminder = new reminder[sum];
