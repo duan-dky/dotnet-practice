@@ -22,33 +22,37 @@ namespace neverMiss
                                                     EventArgs myEventArgs)
             {
                 myTimer.Stop();
-                timer timer = new timer();
-                int sum = timer.getSum();
-                reminder[] reminder = new reminder[sum];
-                for (int i = 0; i < sum; i++)
-                {
-                    reminder[i] = new reminder();
-                }
-                timer.QueryTimer(DateTime.Now.ToString("yyyy/MM/d HH:mm"), reminder);
-                reminder = null;
                 alarmCounter += 1;
                 myTimer.Enabled = true;
             }
             public void CallToChildThread()
             {
-                /* Adds the event and the event handler for the method that will 
-                   process the timer event to the timer. */
-                myTimer.Tick += new EventHandler(TimerEventProcessor);
+                ///* Adds the event and the event handler for the method that will 
+                //   process the timer event to the timer. */
+                //myTimer.Tick += new EventHandler(TimerEventProcessor);
 
-                // Sets the timer interval to 60 seconds.
-                myTimer.Interval = 60000;
-                myTimer.Start();
+                //// Sets the timer interval to 60 seconds.
+                //myTimer.Interval = 10000;
+                //myTimer.Start();
 
-                // Runs the timer, and raises the event.
-                while (exitFlag == false)
-                {
-                    // Processes all the events in the queue.
-                    Application.DoEvents();
+                //// Runs the timer, and raises the event.
+                //while (exitFlag == false)
+                //{
+                //    // Processes all the events in the queue.
+                //    Application.DoEvents();
+                //}
+                for(; ; )
+                {   
+                    Thread.Sleep(10000);
+                    timer timer = new timer();
+                    int sum = timer.getSum();
+                    reminder[] reminder = new reminder[sum];
+                    for (int i = 0; i < sum; i++)
+                    {
+                        reminder[i] = new reminder();
+                    }
+                    timer.QueryTimer(DateTime.Now.ToString("yyyy/MM/d HH:mm"), reminder);
+                    reminder = null;
                 }
             }
         }
