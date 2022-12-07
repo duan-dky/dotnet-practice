@@ -86,12 +86,6 @@ namespace neverMiss
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("您确定退出吗？", "提示", MessageBoxButtons.OKCancel,
-            MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (dr == DialogResult.OK)
-            {
-                System.Environment.Exit(0);
-            }
         }
     }
 }
