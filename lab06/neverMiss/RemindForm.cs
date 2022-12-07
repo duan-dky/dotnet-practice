@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Diagnostics;
 namespace neverMiss
 {
     public partial class RemindForm : Form
@@ -58,52 +59,20 @@ namespace neverMiss
                 // 在这里添加代码，打开文件并进行处理
             }
         }
-        private void DisplayToast()
-        {
-            //richTextBox1.Text = Directory.GetCurrentDirectory();
-            // Construct the content and show the toast!
-            new ToastContentBuilder()
+        
+        //private delegate void richTextBox1CallBack();
+        //private void setText(string str)
+        //{
+        //    richTextBox1CallBack callback = delegate ()//使用委托 
 
+        //    {
 
-    // Profile (app logo override) image
-    .AddAppLogoOverride(new Uri(Directory.GetCurrentDirectory() + "\\neverMiss.png"), ToastGenericAppLogoCrop.Circle)
-    .AddText("做.net作业")
-    // Buttons
-    .AddButton(new ToastButton()
-        .SetContent("我知道了")
-        .AddArgument("now")
-        .SetBackgroundActivation())
+        //        richTextBox1.Text=str;
 
-    .AddButton(new ToastButton()
-        .SetContent("稍等一下")
-        .AddArgument("later")
-        .SetBackgroundActivation())
-    .Show(toast =>
-    {
-        toast.ExpirationTime = DateTime.Now.AddSeconds(30);
-    });
-            ToastNotificationManagerCompat.OnActivated += toastArgs =>
-            {
-                CheckInput(toastArgs.Argument.ToString());
-            };
-        }
-        private void CheckInput(string toastArgs)
-        {
-            setText(toastArgs);
-        }
-        private delegate void richTextBox1CallBack();
-        private void setText(string str)
-        {
-            richTextBox1CallBack callback = delegate ()//使用委托 
+        //    };
 
-            {
-
-                richTextBox1.Text=str;
-
-            };
-
-            richTextBox1.Invoke(callback);
-        }
+        //    richTextBox1.Invoke(callback);
+        //}
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -113,9 +82,9 @@ namespace neverMiss
         {
 
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
+
             int isImportant = 0;
             if (radioButton1.Checked)
             {
@@ -125,7 +94,26 @@ namespace neverMiss
             {
                 isImportant = 0;
             }
-            if(richTextBox1.Text.Length == 0) {
+            string minute = "";
+            if (int.Parse(numericUpDown2.Value.ToString()) <10)
+            {
+                minute = "0" + numericUpDown2.Value.ToString();
+            }
+            else
+            {
+                minute= numericUpDown2.Value.ToString();
+            }
+            string hour = "";
+            if (int.Parse(numericUpDown1.Value.ToString()) < 10)
+            {
+                hour = "0" + numericUpDown1.Value.ToString();
+            }
+            else
+            {
+                hour= numericUpDown1.Value.ToString();
+            }
+            if (richTextBox1.Text.Length == 0)
+            {
                 MessageBox.Show("请输入完整信息");
             }
             else
@@ -154,7 +142,7 @@ namespace neverMiss
                         cmd.CommandText = insert;
                         cmd.Parameters.AddWithValue("@id", sum + 1);
                         cmd.Parameters.AddWithValue("@message", richTextBox1.Text);
-                        cmd.Parameters.AddWithValue("@datetime", dateTimePicker1.Value.ToString());
+                        cmd.Parameters.AddWithValue("@datetime", dateTimePicker1.Value.ToString("yyyy/MM/d")+" "+ hour+":"+ minute);
                         cmd.Parameters.AddWithValue("@interval", int.Parse(numericUpDown4.Text));
                         cmd.Parameters.AddWithValue("@count", int.Parse(numericUpDown5.Text));
                         cmd.Parameters.AddWithValue("@keeping", int.Parse(numericUpDown6.Text));
@@ -163,24 +151,11 @@ namespace neverMiss
                         cmd.Parameters.AddWithValue("@finish", 0);
                         cmd.ExecuteNonQuery();
                     }
-                    //string query = "SELECT * FROM reminder";
-                    //using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                    //{
-                    //    using (SQLiteDataReader reader = command.ExecuteReader())
-                    //    {
-                    //        while (reader.Read())
-                    //        {
-                    //            for(int i = 0; i < 8; i++)
-                    //            {
-                    //                richTextBox1.Text = richTextBox1.Text + reader.GetValue(i) + " ";
-                    //            }
-                    //        }
-                    //    }
-                    //}
+
                 }
                 MessageBox.Show("设置成功");
             }
-            
+
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -188,6 +163,14 @@ namespace neverMiss
 
         }
 
+        private void label8_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

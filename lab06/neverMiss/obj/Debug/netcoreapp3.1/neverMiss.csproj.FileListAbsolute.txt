@@ -192,7 +192,6 @@ C:\Users\duan\Projects\github\dotnet-practice\lab06\neverMiss\obj\Debug\netcorea
 C:\Users\duan\Projects\github\dotnet-practice\lab06\neverMiss\obj\Debug\netcoreapp3.1\neverMiss.csproj.ResolveComReference.cache
 C:\Users\duan\Projects\github\dotnet-practice\lab06\neverMiss\obj\Debug\netcoreapp3.1\neverMiss.Form1.resources
 C:\Users\duan\Projects\github\dotnet-practice\lab06\neverMiss\obj\Debug\netcoreapp3.1\neverMiss.HistoryForm.resources
-C:\Users\duan\Projects\github\dotnet-practice\lab06\neverMiss\obj\Debug\netcoreapp3.1\neverMiss.PopUpForm.resources
 C:\Users\duan\Projects\github\dotnet-practice\lab06\neverMiss\obj\Debug\netcoreapp3.1\neverMiss.Properties.Resources.resources
 C:\Users\duan\Projects\github\dotnet-practice\lab06\neverMiss\obj\Debug\netcoreapp3.1\neverMiss.RemindForm.resources
 C:\Users\duan\Projects\github\dotnet-practice\lab06\neverMiss\obj\Debug\netcoreapp3.1\neverMiss.SettingForm.resources

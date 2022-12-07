@@ -14,6 +14,7 @@ namespace neverMiss
         public int keeping { get; set; }
         public int important { get; set; }
         public string path { get; set; }
+        public int finish { get; set; }
     }
 }
 
