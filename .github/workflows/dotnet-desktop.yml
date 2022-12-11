@@ -115,7 +115,7 @@ jobs:
       run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
     - name: Add AppPackage 
       working-directory: lab06
-      run: Compress-Archive -Path ${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\ ${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\${{ env.Wap_Project_Directory }}'.zip'
+      run: Compress-Archive -Path ${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\ ${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\${{ env.Wap_Project_Directory }}.zip
 
     - name: Create Draft Release
       id: create_release
@@ -134,7 +134,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: lab06\${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\
+        asset_path: lab06\${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\${{ env.Wap_Project_Directory }}.zip
         asset_name:  NeverMiss
         asset_content_type: application/zip
 
