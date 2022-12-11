@@ -100,7 +100,9 @@ jobs:
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
       working-directory: lab06
-      run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      run: 
+        msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+        Compress-Archive -Path lab06\${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\ lab06\${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\${{ env.Wap_Project_Directory }}'.zip'
       env:
         Appx_Bundle: Always
         Appx_Bundle_Platforms: x86|x64
