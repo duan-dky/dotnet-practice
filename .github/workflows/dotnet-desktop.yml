@@ -116,5 +116,5 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: NeverMiss
-        path: lab06\${{ env.Wap_Project_Directory }}\NeverMiss
+        name: NeverMiss.zip
+        path: lab06\${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\
