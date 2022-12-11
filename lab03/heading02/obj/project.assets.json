@@ -333,11 +333,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duan\\Documents\\Visual Studio 2022\\WinFormsApp2\\WinFormsApp2.csproj",
+      "projectUniqueName": "C:\\Users\\duan\\Projects\\github\\dotnet-practice\\lab03\\heading02\\WinFormsApp2.csproj",
       "projectName": "WinFormsApp2",
-      "projectPath": "C:\\Users\\duan\\Documents\\Visual Studio 2022\\WinFormsApp2\\WinFormsApp2.csproj",
+      "projectPath": "C:\\Users\\duan\\Projects\\github\\dotnet-practice\\lab03\\heading02\\WinFormsApp2.csproj",
       "packagesPath": "C:\\Users\\duan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duan\\Documents\\Visual Studio 2022\\WinFormsApp2\\obj\\",
+      "outputPath": "C:\\Users\\duan\\Projects\\github\\dotnet-practice\\lab03\\heading02\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\duan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -390,7 +390,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

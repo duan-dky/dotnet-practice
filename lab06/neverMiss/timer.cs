@@ -12,7 +12,62 @@ namespace neverMiss
     public class timer
     {
         private string path = "";
-
+        public class reminder
+        {
+            public int id { get; set; }
+            public string message { get; set; }
+            public string datetime { get; set; }
+            public int interval { get; set; }
+            public int count { get; set; }
+            public int keeping { get; set; }
+            public int important { get; set; }
+            public string path { get; set; }
+            public int finish { get; set; }
+        }
+        //private int[] id;
+        //private string[] message;
+        //private string[] datetime;
+        //private int[] interval;
+        //private int[] count;
+        //private int[] keeping;
+        //private int[] important;
+        //private int[]
+        public static reminder[] re;
+        public static int sum=0;
+        public timer()
+        {
+            //int sum = getSum();
+            re = new reminder[100];
+            for (int i = 0; i < 100; i++)
+            {
+                re[i] = new reminder();
+            }
+            string connectionString = "Data Source=demo.db;Version=3;";
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                int i = 0;
+                string count = "select * from reminder";
+                using (SQLiteCommand command = new SQLiteCommand(count, connection))
+                {
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //Console.WriteLine(reader.GetValue(2).ToString());
+                            re[i].datetime = reader.GetValue(2).ToString();
+                            re[i].id = int.Parse(reader.GetValue(0).ToString());
+                            re[i].interval = int.Parse(reader.GetValue(3).ToString());
+                            re[i].count = int.Parse(reader.GetValue(4).ToString());
+                            
+                            i++;
+                        }
+                        sum = i;
+                    }
+                }
+                connection.Close();
+            }
+        }
         private void DisplayToast(string id,string msg,string important,string keeping,string path)
         {
             string is_important = "";
@@ -24,34 +79,40 @@ namespace neverMiss
             {
                 is_important = "";
             }
+            ToastNotificationManagerCompat.History.Clear();
             // Construct the content and show the toast!
             new ToastContentBuilder()
-
-
-    // Profile (app logo override) image
-    .AddAppLogoOverride(new Uri(Directory.GetCurrentDirectory() + "\\neverMiss.png"), ToastGenericAppLogoCrop.Circle)
-    .AddText(is_important)
-    .AddText(msg)
-    // Buttons
-    .AddButton(new ToastButton()
-        .SetContent("我知道了")
-        .AddArgument("now")
-        .SetBackgroundActivation())
-    .AddButton(new ToastButton()
-        .SetContent("稍等一下")
-        .AddArgument("later")
-        .SetBackgroundActivation())
-    .AddButton(new ToastButton()
-        .SetContent("我已完成")
-        .AddArgument("finish")
-        .SetBackgroundActivation())
-    .Show(toast =>
-    {
-        toast.ExpirationTime = DateTime.Now.AddSeconds(int.Parse(keeping)*60);
-    });
+            // Profile (app logo override) image
+            .AddAppLogoOverride(new Uri(Directory.GetCurrentDirectory() + "\\neverMiss.png"), ToastGenericAppLogoCrop.Circle)
+            .AddText(is_important)
+            .AddText(msg)
+            // Buttons
+            .AddButton(new ToastButton()
+                .SetContent("我知道了")
+                .AddArgument("now")
+                .SetBackgroundActivation())
+            .AddButton(new ToastButton()
+                .SetContent("稍等一下")
+                .AddArgument("later")
+                .SetBackgroundActivation())
+            .AddButton(new ToastButton()
+                .SetContent("我已完成")
+                .AddArgument("finish")
+                .SetBackgroundActivation())
+            .Show(toast =>
+            {
+                //toast.ExpirationTime = DateTime.Now;
+                toast.ExpirationTime = DateTime.Now.AddSeconds(int.Parse(keeping));
+            });
+            int count = 0;
             ToastNotificationManagerCompat.OnActivated += toastArgs =>
             {
-                CheckInput(id,toastArgs.Argument.ToString(),path);
+                if (count == 0)
+                {
+                    CheckInput(id, toastArgs.Argument.ToString(), path);
+                //ToastNotificationManagerCompat.Uninstall();
+                }
+                count++;
             };
         }
         private void CheckInput(string id,string toastArgs,string path)
@@ -68,24 +129,45 @@ namespace neverMiss
                     process.StartInfo.UseShellExecute = false;
                     process.StartInfo.RedirectStandardOutput = true;
                     process.Start();
-                    process.WaitForExit();
+                    //process.WaitForExit();
                 }
                 catch (InvalidOperationException)
                 {
-
+                    
                 }
-            }
-            else if (toastArgs == "later")
-            {
+                re[int.Parse(id) - 1].count = 0;
                 // 使用 SQLiteCommand 执行 SQL 语句
-                string sql = "UPDATE reminder SET count = count -1 WHERE id = " + id + ";";
+                string sql = "UPDATE reminder SET count = 0 WHERE id = " + id + ";";
                 SQLiteCommand command = new SQLiteCommand(sql, connection);
                 command.ExecuteNonQuery();
 
                 // 关闭数据库连接
                 connection.Close();
             }
-            else
+            else if (toastArgs == "later")
+            {
+                
+                re[int.Parse(id) - 1].count = re[int.Parse(id) - 1].count - 1;
+                int interval=re[int.Parse(id) - 1].interval;
+                //String sql1 = "SELECT interval FROM reminder where id=" + id + ";";
+                //// 使用 SQLiteCommand 执行 SQL 语句
+                //SQLiteCommand command1 = new SQLiteCommand(sql1, connection);
+                //SQLiteDataReader reader = command1.ExecuteReader();
+                //String s=reader.GetValue(3).ToString();
+                //int interval = 1;
+                //connection.Close();
+
+                String time = DateTime.Now.AddMinutes(interval).ToString("yyyy/MM/d HH:mm");
+
+                string sql = "UPDATE reminder SET count = count-1,datetime='"+time+"' WHERE id = " + id + ";";
+
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                command.ExecuteNonQuery();
+
+                // 关闭数据库连接
+                connection.Close();
+            }
+            else if(toastArgs=="finish")
             {
                 // 使用 SQLiteCommand 执行 SQL 语句
                 string sql = "UPDATE reminder SET finish = 1 WHERE id = " + id + ";";
@@ -95,9 +177,27 @@ namespace neverMiss
                 // 关闭数据库连接
                 connection.Close();
             }
+            else
+            {
+                try
+                {
+                    Process process = new Process();
+                    process.StartInfo.FileName = path;
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.Start();
+                    process.WaitForExit();
+                }
+                catch (InvalidOperationException)
+                {
+
+                }
+                re[int.Parse(id) - 1].count = 0;
+            }
         }
         public int getSum()
         {
+            int sum = 0;
             string connectionString = "Data Source=demo.db;Version=3;";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -118,9 +218,9 @@ namespace neverMiss
             }
             return sum;
         }
-        private static int sum=0;
-        public void QueryTimer(string time, reminder[]reminder)
+        public void QueryTimer(string time)
         {
+            int id = 0;
             string connectionString = "Data Source=demo.db;Version=3;";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -132,20 +232,21 @@ namespace neverMiss
                     {
                         while (reader.Read())
                         {
-                            int id = int.Parse(reader.GetValue(0).ToString());
-                            reminder[id-1].datetime = reader.GetValue(2).ToString();
-                            if (reminder[id-1].datetime ==time)
+                            id = int.Parse(reader.GetValue(0).ToString());
+                            //getData();
+                            //Console.WriteLine(re[id - 1].datetime);
+                            if (re[id-1].datetime ==time)
                             {
-                                if (reader.GetValue(8).ToString() == "0")
+                                if (int.Parse(reader.GetValue(8).ToString()) == 0|| int.Parse(reader.GetValue(8).ToString()) == -1)
                                 {
-                                    if (int.Parse(reader.GetValue(4).ToString()) >= 0)
+                                    if (re[id - 1].count > 0)
                                     {
-                                        reminder[id-1].count = int.Parse(reader.GetValue(4).ToString());
-                                        reminder[id-1].datetime = reader.GetValue(2).ToString();
+                                        //re[id-1].datetime = reader.GetValue(2).ToString();
                                         DisplayToast(reader.GetValue(0).ToString(), reader.GetValue(1).ToString(), reader.GetValue(6).ToString(), reader.GetValue(5).ToString(), reader.GetValue(7).ToString());
-                                        DateTime dateTime = Convert.ToDateTime(reminder[id-1].datetime);
+                                        DateTime dateTime = Convert.ToDateTime(re[id - 1].datetime);
                                         TimeSpan timeSpan = new TimeSpan(0, int.Parse(reader.GetValue(3).ToString()), 0);
-                                        dateTime.Add(timeSpan);
+                                        dateTime = dateTime.Add(timeSpan);
+                                        re[id - 1].datetime = dateTime.ToString("yyyy/MM/d HH:mm");
                                     }
                                 }
                             }

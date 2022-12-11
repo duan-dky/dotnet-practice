@@ -39,6 +39,22 @@ namespace neverMiss
                 dt2.Columns.Add("finish", typeof(String));
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
+                    //进行时间的比对
+                    DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/d H:mm"));
+                    DateTime datetime = Convert.ToDateTime(ds.Tables[0].Rows[i]["datetime"]);
+                    if (DateTime.Compare(datetime, nowtime) < 0&& ds.Tables[0].Rows[i]["finish"].ToString()=="0")
+                    {
+
+                        string overtime = "update reminder set finish = -1 where id = @id";
+                        using (SQLiteCommand cmd = new SQLiteCommand(connection))
+                        {
+                            cmd.CommandText = overtime;
+                            cmd.Parameters.AddWithValue("@id", ds.Tables[0].Rows[i]["id"].ToString());
+                            cmd.ExecuteNonQuery();
+                        }
+                        ds.Tables[0].Rows[i]["finish"] = -1;
+
+                    }
                     if (ds.Tables[0].Rows[i]["finish"].ToString() == "0")
                     {
                         string im = "否";
@@ -54,7 +70,7 @@ namespace neverMiss
                         string im = "否";
                         if (ds.Tables[0].Rows[i]["finish"].ToString() == "-1")
                         {
-                            fi = "超时";
+                            fi = "过期";
                         }
                         if (ds.Tables[0].Rows[i]["important"].ToString() == "1")
                         {
@@ -70,6 +86,7 @@ namespace neverMiss
                 //不允许添加行
                 dataGridView1.AllowUserToAddRows = false;
                 dataGridView2.AllowUserToAddRows = false;
+                connection.Close();
             }
         }
         public HistoryForm(Form1 f)
@@ -108,6 +125,7 @@ namespace neverMiss
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.ExecuteNonQuery();
                     }
+                    connection.Close();
                 }
                 this.UpdateDataTable();
             }

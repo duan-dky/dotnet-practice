@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B3PoR4/yNc/AGbalKBUOjA9aB45SOe6gQ5sydY9Lk1ZpF2AyxUQYbGXcG/GJrJpmW/w3MWRD3EoVPYi+M6yYgg==",
+  "dgSpecHash": "G/wJ8Wqr+YtzUknue/w4d6tDzAP721I57OhpGSTogvrg7HzVyncrzNI4lzuPd/q5deZIAqaEKfU9VWRkqifrEA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\duan\\Documents\\Visual Studio 2022\\WinFormsApp2\\WinFormsApp2.csproj",
+  "projectFilePath": "C:\\Users\\duan\\Projects\\github\\dotnet-practice\\lab03\\heading02\\WinFormsApp2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\duan\\.nuget\\packages\\microsoft.data.sqlite\\7.0.0\\microsoft.data.sqlite.7.0.0.nupkg.sha512",
     "C:\\Users\\duan\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.0\\microsoft.data.sqlite.core.7.0.0.nupkg.sha512",

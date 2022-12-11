@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 
@@ -15,46 +16,53 @@ namespace neverMiss
         /// </summary>
         public class Timer1
         {
-            static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
-            static int alarmCounter = 1;
-            static bool exitFlag = false;
-            private static void TimerEventProcessor(Object myObject,
-                                                    EventArgs myEventArgs)
-            {
-                myTimer.Stop();
-                alarmCounter += 1;
-                myTimer.Enabled = true;
-            }
+            private static System.Timers.Timer aTimer;
+            //private static timer timer = new timer();
             public void CallToChildThread()
             {
-                ///* Adds the event and the event handler for the method that will 
-                //   process the timer event to the timer. */
-                //myTimer.Tick += new EventHandler(TimerEventProcessor);
-
-                //// Sets the timer interval to 60 seconds.
-                //myTimer.Interval = 10000;
-                //myTimer.Start();
-
-                //// Runs the timer, and raises the event.
-                //while (exitFlag == false)
-                //{
-                //    // Processes all the events in the queue.
-                //    Application.DoEvents();
-                //}
-                for(; ; )
-                {   
-                    Thread.Sleep(60000);
-                    timer timer = new timer();
-                    int sum = timer.getSum();
-                    reminder[] reminder = new reminder[sum];
-                    for (int i = 0; i < sum; i++)
-                    {
-                        reminder[i] = new reminder();
-                    }
-                    timer.QueryTimer(DateTime.Now.ToString("yyyy/MM/d HH:mm"), reminder);
-                    reminder = null;
-                }
+                SetTimer();
+                //aTimer.Stop();
+                //aTimer.Dispose();
             }
+            private static void SetTimer()
+            {
+                // Create a timer with a two second interval.
+                aTimer = new System.Timers.Timer(15000);
+                // Hook up the Elapsed event for the timer. 
+                aTimer.Elapsed += OnTimedEvent;
+                aTimer.AutoReset = true;
+                aTimer.Enabled = true;
+            }
+            private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+            {
+                timer timer = new timer();
+                timer.QueryTimer(DateTime.Now.ToString("yyyy/MM/d HH:mm"));
+            }
+            //public void CallToChildThread()
+            //{
+            //    ///* Adds the event and the event handler for the method that will 
+            //    //   process the timer event to the timer. */
+            //    //myTimer.Tick += new EventHandler(TimerEventProcessor);
+
+            //    //// Sets the timer interval to 60 seconds.
+            //    //myTimer.Interval = 10000;
+            //    //myTimer.Start();
+
+            //    //// Runs the timer, and raises the event.
+            //    //while (exitFlag == false)
+            //    //{
+            //    //    // Processes all the events in the queue.
+            //    //    Application.DoEvents();
+            //    //}
+            //    timer timer = new timer();
+
+            //    for (; ; )
+            //    {
+            //        Thread.Sleep(15000);
+            //        //Console.WriteLine(DateTime.Now.ToString("yyyy/MM/d HH:mm"));
+            //        timer.QueryTimer(DateTime.Now.ToString("yyyy/MM/d HH:mm"));
+            //    }
+            //}
         }
         [STAThread]
         static void Main()

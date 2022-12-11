@@ -16,13 +16,13 @@ namespace neverMiss
         public Form1()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Minimized;
+            //this.WindowState = FormWindowState.Minimized;
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         { 
             e.Cancel = true;    //取消窗体关闭事件
-            this.WindowState = FormWindowState.Minimized;   //最小化窗口
-            this.ShowInTaskbar = false;		//在Windows任务栏中不显示窗体
+            //this.WindowState = FormWindowState.Minimized;   //最小化窗口
+            this.Hide();
         }
         private void label1_Click(object sender, EventArgs e)
         {

@@ -86,7 +86,7 @@
             // 
             this.numericUpDown6.Location = new System.Drawing.Point(84, 93);
             this.numericUpDown6.Minimum = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             0});
@@ -94,10 +94,11 @@
             this.numericUpDown6.Size = new System.Drawing.Size(120, 27);
             this.numericUpDown6.TabIndex = 9;
             this.numericUpDown6.Value = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             0});
+            this.numericUpDown6.ValueChanged += new System.EventHandler(this.numericUpDown6_ValueChanged);
             // 
             // numericUpDown5
             // 
@@ -119,6 +120,11 @@
             // numericUpDown4
             // 
             this.numericUpDown4.Location = new System.Drawing.Point(84, 26);
+            this.numericUpDown4.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
             this.numericUpDown4.Minimum = new decimal(new int[] {
             1,
             0,
@@ -149,7 +155,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(24, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "分";
+            this.label1.Text = "秒";
             // 
             // label5
             // 

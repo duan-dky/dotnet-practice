@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Diagnostics;
+using neverMiss;
 namespace neverMiss
 {
     public partial class RemindForm : Form
@@ -151,8 +152,11 @@ namespace neverMiss
                         cmd.Parameters.AddWithValue("@finish", 0);
                         cmd.ExecuteNonQuery();
                     }
-
+                    timer.re[timer.sum].id = sum + 1;
+                    timer.re[timer.sum].datetime = dateTimePicker1.Value.ToString("yyyy/MM/d") + " " + hour + ":" + minute;
+                    timer.re[timer.sum].count = int.Parse(numericUpDown5.Text);
                 }
+                
                 MessageBox.Show("设置成功");
             }
 
@@ -169,6 +173,11 @@ namespace neverMiss
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown6_ValueChanged(object sender, EventArgs e)
         {
 
         }
