@@ -135,7 +135,7 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: lab06\${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\${{ env.Wap_Project_Directory }}.zip
-        asset_name:  NeverMiss
+        asset_name:  NeverMiss.zip
         asset_content_type: application/zip
 
     - uses: eregon/publish-release@v1
