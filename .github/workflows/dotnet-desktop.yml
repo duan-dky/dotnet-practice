@@ -111,10 +111,30 @@ jobs:
     - name: Remove the pfx
       working-directory: lab06
       run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
+      
+    - name: Create Draft Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ver-${{ github.sha }}
+        release_name:  NeverMiss
+        draft: true
+        prerelease: true
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: NeverMiss.zip
-        path: lab06\${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: lab06\${{ env.Wap_Project_Directory }}\bin\Release\netcoreapp3.1\
+        asset_name:  NeverMiss
+        asset_content_type: application/zip
+
+    - uses: eregon/publish-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        release_id: ${{ steps.create_release.outputs.id }}
